@@ -1,0 +1,5 @@
+{
+  "name": "Plant Guard DOS",
+  "description": "A professional drone operation system dashboard for agricultural monitoring and security, featuring real-time telemetry, AI analysis status, and live video feed simulation.",
+  "requestFramePermissions": []
+}

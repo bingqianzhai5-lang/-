@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plant Guard - Drone Operation System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              background: '#000000',
+              surface: '#09090B', // Zinc 950
+              'surface-light': '#18181B', // Zinc 900
+              border: '#27272A', // Zinc 800
+              primary: '#00E676',
+              'primary-dim': 'rgba(0, 230, 118, 0.1)',
+              warning: '#F59E0B',
+              danger: '#EF4444',
+            },
+            animation: {
+              'radar-spin': 'radar-spin 4s linear infinite',
+              'scanline': 'scanline 8s linear infinite',
+              'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              'radar-spin': {
+                '0%': { transform: 'rotate(0deg)' },
+                '100%': { transform: 'rotate(360deg)' },
+              },
+              'scanline': {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(100%)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      ::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3F3F46;
+        border-radius: 2px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #52525B;
+      }
+      .tech-panel {
+        background: #09090B;
+        border: 1px solid #27272A;
+      }
+      .tech-border-b {
+        border-bottom: 1px solid #27272A;
+      }
+      .tech-text-sub {
+        color: #71717A; /* Zinc 500 */
+      }
+      
+      /* CRT/Scanline Effects */
+      .scan-overlay {
+        background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
+        background-size: 100% 4px;
+      }
+      .radar-gradient {
+        background: conic-gradient(from 0deg, transparent 0deg, rgba(0, 230, 118, 0.1) 60deg, rgba(0, 230, 118, 0.4) 90deg, transparent 91deg);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-background text-zinc-300 antialiased overflow-hidden selection:bg-primary/20 selection:text-primary">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
