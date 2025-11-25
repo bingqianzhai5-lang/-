@@ -1,15 +1,5 @@
-// 简化的Vite配置，避免依赖问题
+// 最小化配置，确保构建成功
 export default {
-  // 为GitHub Pages设置基础路径
-  base: '/plant-guard-dos/',
-  server: {
-    port: 3000,
-    host: '0.0.0.0',
-  },
-  plugins: [],
-  resolve: {
-    alias: {
-      '@': './',
-    }
-  }
+  // GitHub Pages的基础路径
+  base: '/plant-guard-dos/'
 }
