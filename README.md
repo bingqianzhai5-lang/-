@@ -21,45 +21,51 @@ View your app in AI Studio: https://ai.studio/apps/drive/1QMD-J1meghqIHLgvGnRweL
 
 ## GitHub Pages 部署指南
 
-### 部署说明
+### GitHub Pages 部署指南
 
-由于环境限制，需要在有Node.js的环境中完成部署。请按照以下步骤操作：
+#### 环境要求
+- Node.js 环境（当前环境未安装Node.js）
+- npm 或 yarn 包管理器
+- Git
 
-### 步骤1：修正配置
-
-1. 已更新 `vite.config.ts` 中的 `base` 配置为正确的仓库名称：
+#### 前置条件
+1. 已确认 `vite.config.ts` 中的 `base` 配置正确设置为仓库名称：
    ```javascript
    base: '/plant-guard-dos/', // GitHub仓库名称
    ```
+2. 已在 `package.json` 中添加必要的脚本和依赖：
+   - 构建脚本: `npm run build`
+   - 部署脚本: `npm run deploy`
+   - gh-pages 依赖已添加
 
-### 手动部署步骤
+#### 详细部署步骤
 
-#### 前置条件
-- 安装 Node.js 和 npm
-- 克隆此仓库到本地
-- Git 仓库已初始化
+在有Node.js的环境中执行以下命令：
 
 ### 自动部署（推荐）
 
-1. 安装依赖
+1. **安装项目依赖**：
+
 ```bash
 npm install
 ```
 
-2. 安装 gh-pages 包
-```bash
-npm install --save-dev gh-pages
-```
+2. **构建项目**：
 
-3. 构建项目
 ```bash
 npm run build
 ```
 
-4. 部署到 GitHub Pages
+3. **部署到 GitHub Pages**：
+
 ```bash
 npm run deploy
 ```
+
+这将自动执行以下操作：
+- 构建项目到 dist 目录
+- 将构建文件部署到 `gh-pages` 分支
+- 推送 gh-pages 分支到远程仓库
 
 ### 手动部署选项
 如果自动部署失败，可以使用以下手动方法：
