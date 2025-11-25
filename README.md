@@ -24,8 +24,9 @@ View your app in AI Studio: https://ai.studio/apps/drive/1QMD-J1meghqIHLgvGnRweL
 ### 前置条件
 - 安装 Node.js 和 npm
 - 克隆此仓库到本地
+- Git 仓库已初始化
 
-### 部署步骤
+### 自动部署（推荐）
 
 1. 安装依赖
 ```bash
@@ -75,4 +76,33 @@ git commit -m "Deploy to GitHub Pages"
 git push origin gh-pages
 ```
 
-7. 在 GitHub 仓库设置中，将 GitHub Pages 源设置为 gh-pages 分支
+### 在 GitHub 仓库设置中配置 GitHub Pages
+
+1. 进入您的 GitHub 仓库
+2. 导航至 **Settings** → **Pages**
+3. 在 **Source** 下，选择：
+   - Source: Deploy from a branch
+   - Branch: gh-pages
+   - Folder: / (root)
+4. 点击 **Save**
+
+### 部署后配置
+
+- 确保 `vite.config.ts` 中的 `base` 属性设置正确，以匹配仓库名称
+- 验证所有资源路径是否为相对路径，以避免 404 错误
+- 检查您的应用程序是否正确处理 GitHub Pages URL 结构的路由
+
+### 访问已部署的站点
+
+部署后，您的站点将在此地址可用：
+```
+https://[your-username].github.io/[your-repository-name]/
+```
+
+部署可能需要几分钟时间才能生效。
+
+### 故障排除
+
+- 如果资源加载不正确，请仔细检查 `vite.config.ts` 中的 `base` 配置
+- 对于路由问题，考虑使用哈希路由器或更新路由器配置中的基础路径
+- 如果站点未显示，请确保 gh-pages 分支已正确推送并包含构建文件
