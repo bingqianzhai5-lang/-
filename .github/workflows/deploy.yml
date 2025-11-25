@@ -5,60 +5,34 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          
+      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
-          
-      - name: Install dependencies with debug
-        run: |
-          echo "Installing dependencies..."
-          npm ci --verbose || {
-            echo "npm ci failed, trying npm install..."
-            npm install --verbose
-          }
-          echo "Node.js version: $(node -v)"
-          echo "npm version: $(npm -v)"
-        
-      - name: Install gh-pages
-        run: npm install --save-dev gh-pages
-        
-      - name: Build with debug
-        run: |
-          echo "Building project..."
-          npm run build --verbose
-          ls -la ./dist || echo "dist directory not created"
-        
-      - name: Configure Pages
-        uses: actions/configure-pages@v3
-        
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Build
+        run: npm run build
+      
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v1
         with:
           path: './dist'
-          
+      
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          artifact_name: github-pages
-        
-      - name: Show deployment result
-        run: |
-          echo "Deployment status: ${{ steps.deployment.outcome }}"
-          echo "Deployment URL: ${{ steps.deployment.outputs.page_url }}"
+        uses: actions/deploy-pages@v1
