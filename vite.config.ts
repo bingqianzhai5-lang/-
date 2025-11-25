@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: '/-', // 设置为GitHub仓库名称，用于GitHub Pages部署
+  base: '/plant-guard-dos/', // 设置为GitHub仓库名称，用于GitHub Pages部署
   server: {
     port: 3000,
     host: '0.0.0.0',

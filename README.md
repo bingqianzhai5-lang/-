@@ -21,20 +21,16 @@ View your app in AI Studio: https://ai.studio/apps/drive/1QMD-J1meghqIHLgvGnRweL
 
 ## GitHub Pages 部署指南
 
-### 一键部署（推荐）
+### 部署说明
 
-我们提供了一个自动化脚本，可以一键完成所有部署步骤：
+由于环境限制，需要在有Node.js的环境中完成部署。请按照以下步骤操作：
 
-```bash
-./deploy-to-gh-pages.sh
-```
+### 步骤1：修正配置
 
-该脚本会自动执行以下操作：
-- 安装项目依赖
-- 安装 gh-pages 包
-- 构建项目
-- 部署到 GitHub Pages
-- 显示部署结果和访问URL
+1. 已更新 `vite.config.ts` 中的 `base` 配置为正确的仓库名称：
+   ```javascript
+   base: '/plant-guard-dos/', // GitHub仓库名称
+   ```
 
 ### 手动部署步骤
 
@@ -109,17 +105,35 @@ git push origin gh-pages
 - 验证所有资源路径是否为相对路径，以避免 404 错误
 - 检查您的应用程序是否正确处理 GitHub Pages URL 结构的路由
 
+### 步骤2：在有Node.js的环境中执行部署
+
+1. 克隆仓库到有Node.js的环境中
+2. 安装依赖：`npm install`
+3. 安装gh-pages：`npm install --save-dev gh-pages`
+4. 构建项目：`npm run build`
+5. 部署到GitHub Pages：`npx gh-pages -d dist`
+
+### 步骤3：配置GitHub仓库
+
+1. 进入GitHub仓库设置
+2. 导航至 **Settings** → **Pages**
+3. 在 **Source** 下，选择：
+   - Source: Deploy from a branch
+   - Branch: gh-pages
+   - Folder: / (root)
+4. 点击 **Save**
+
 ### 访问已部署的站点
 
 部署后，您的站点将在此地址可用：
 ```
-https://[your-username].github.io/[your-repository-name]/
+https://bingqianzhai5-lang.github.io/plant-guard-dos/
 ```
 
 部署可能需要几分钟时间才能生效。
 
 ### 故障排除
 
-- 如果资源加载不正确，请仔细检查 `vite.config.ts` 中的 `base` 配置
+- 如果资源加载不正确，请确保 `vite.config.ts` 中的 `base` 配置设置为 `/plant-guard-dos/`
 - 对于路由问题，考虑使用哈希路由器或更新路由器配置中的基础路径
 - 如果站点未显示，请确保 gh-pages 分支已正确推送并包含构建文件
