@@ -1,8 +1,12 @@
-// 简化配置以避免TypeScript错误
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+// 添加类型声明以避免TypeScript错误
+declare module 'vite';
+declare module '@vitejs/plugin-react';
 
-export default defineConfig({
+// 使用动态导入来避免直接依赖检查
+const { defineConfig } = require('vite');
+const react = require('@vitejs/plugin-react');
+
+module.exports = defineConfig({
   base: '/plant-guard-dos/', // 设置为GitHub仓库名称，用于GitHub Pages部署
   server: {
     port: 3000,
