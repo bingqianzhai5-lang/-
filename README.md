@@ -21,7 +21,24 @@ View your app in AI Studio: https://ai.studio/apps/drive/1QMD-J1meghqIHLgvGnRweL
 
 ## GitHub Pages 部署指南
 
-### 前置条件
+### 一键部署（推荐）
+
+我们提供了一个自动化脚本，可以一键完成所有部署步骤：
+
+```bash
+./deploy-to-gh-pages.sh
+```
+
+该脚本会自动执行以下操作：
+- 安装项目依赖
+- 安装 gh-pages 包
+- 构建项目
+- 部署到 GitHub Pages
+- 显示部署结果和访问URL
+
+### 手动部署步骤
+
+#### 前置条件
 - 安装 Node.js 和 npm
 - 克隆此仓库到本地
 - Git 仓库已初始化
